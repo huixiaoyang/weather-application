@@ -32,7 +32,7 @@ I put a picture named "icon.png" ![image](https://github.com/huixiaoyang/weather
     </manifest>
 
 In the follow picture, the bule icon of WeatherApplication is that I used.
-![image]()
+![image](https://github.com/huixiaoyang/weather-application/blob/master/myicon.JPG)
 
 ### adding the blue backgroung
 I create a xml file named "textview_shape.xml".
