@@ -73,7 +73,7 @@ The result is the follow picture:
 
 ### adding the refresh button,when the button is pressed,the temperature,the date and the day of the week are all updated.
        
-First, I put a picture named "imagebtn_update.png" ![image]()into drawable folder.Then, add code in suittable position in "activity_main.xml".
+First, I put a picture named "imagebtn_update.png" ![image](https://github.com/huixiaoyang/weather-application/blob/master/imagebtn_update.png)into drawable folder.Then, add code in suittable position in "activity_main.xml".
 
     <LinearLayout
         android:id="@+id/linearLayout_update"
