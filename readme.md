@@ -5,7 +5,7 @@ This is my md file about assigment 001. My student number is 20151633 and my nam
 - adding the refresh button,when the button is pressed,the temperature,the date and the day of the week are all updated.
 
 ### adding the new icon to the app
-I put a picture named "icon.png" ![image]()that I search on the Internet into the drawable folder. Then I modify AndroidManifest.xml.
+I put a picture named "icon.png" ![image](https://github.com/huixiaoyang/weather-application/blob/master/icon.png)that I search on the Internet into the drawable folder. Then I modify AndroidManifest.xml.
 
     <?xml version="1.0" encoding="utf-8"?>
     <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
