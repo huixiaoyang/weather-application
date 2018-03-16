@@ -32,7 +32,7 @@ I put a picture named "icon.png" ![image](https://github.com/huixiaoyang/weather
     </manifest>
 
 In the follow picture, the bule icon of WeatherApplication is that I used.
-![image](E://myicon.JPG)
+![image](https://github.com/huixiaoyang/weather-application/blob/master/myicon.JPG)
 
 ### adding the blue backgroung
 I create a xml file named "textview_shape.xml".
@@ -67,33 +67,13 @@ Then I modify the TextView.
         android:textColor="#909090" />
         
 The result is the follow picture:
-![image](:name="android.permission.INTERNET"/>    <application
-        android:allowBackup="true"
-        android:icon="@drawable/icon"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-    </manifest>
-
-In the follow picture, the bule icon of WeatherApplication is that I used.
-![image]()
-
-
-
+![image](https://github.com/huixiaoyang/weather-application/blob/master/add_blue_bg.JPG)
 
 
 
 ### adding the refresh button,when the button is pressed,the temperature,the date and the day of the week are all updated.
        
-First, I put a picture named "imagebtn_update.png" ![image](E://imagebtn_update.png)into drawable folder.Then, add code in suittable position in "activity_main.xml".
+First, I put a picture named "imagebtn_update.png" ![image](https://github.com/huixiaoyang/weather-application/blob/master/imagebtn_update.png)into drawable folder.Then, add code in suittable position in "activity_main.xml".
 
     <LinearLayout
         android:id="@+id/linearLayout_update"
@@ -129,13 +109,9 @@ Next, I modify the btnClick function in "MainActivity.java".
         String str2= formatter_week.format(curWeek);
         ((TextView) findViewById(R.id.curweekday)).setText(str2);
     }
-Finally, run this application:
-
-![image](E://press_before.JPG)
-
-Press the refresh button. We will find:
-
-![image](E://press_after.JPG)
+Finally, run this application and press the refresh button.
+This is a gif file of the application's work:
+![image](https://github.com/huixiaoyang/weather-application/blob/master/animated.gif)
 
 
 
