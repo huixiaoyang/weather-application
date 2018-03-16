@@ -67,7 +67,28 @@ Then I modify the TextView.
         android:textColor="#909090" />
         
 The result is the follow picture:
-![image](E://add_blue_bg.jpg)
+![image](:name="android.permission.INTERNET"/>    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+    </manifest>
+
+In the follow picture, the bule icon of WeatherApplication is that I used.
+![image]()
+
+
+
+
 
 
 ### adding the refresh button,when the button is pressed,the temperature,the date and the day of the week are all updated.
