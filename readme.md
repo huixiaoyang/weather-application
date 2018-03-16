@@ -32,7 +32,7 @@ I put a picture named "icon.png" ![image](https://github.com/huixiaoyang/weather
     </manifest>
 
 In the follow picture, the bule icon of WeatherApplication is that I used.
-![image](https://github.com/huixiaoyang/weather-application/blob/master/myicon.JPG)
+![image]()
 
 ### adding the blue backgroung
 I create a xml file named "textview_shape.xml".
@@ -67,13 +67,13 @@ Then I modify the TextView.
         android:textColor="#909090" />
         
 The result is the follow picture:
-![image](https://github.com/huixiaoyang/weather-application/blob/master/add_blue_bg.JPG)
+![image]()
 
 
 
 ### adding the refresh button,when the button is pressed,the temperature,the date and the day of the week are all updated.
        
-First, I put a picture named "imagebtn_update.png" ![image](https://github.com/huixiaoyang/weather-application/blob/master/imagebtn_update.png)into drawable folder.Then, add code in suittable position in "activity_main.xml".
+First, I put a picture named "imagebtn_update.png" ![image]()into drawable folder.Then, add code in suittable position in "activity_main.xml".
 
     <LinearLayout
         android:id="@+id/linearLayout_update"
@@ -111,7 +111,7 @@ Next, I modify the btnClick function in "MainActivity.java".
     }
 Finally, run this application and press the refresh button.
 This is a gif file of the application's work:
-![image](https://github.com/huixiaoyang/weather-application/blob/master/animated.gif)
+![image]()
 
 
 
