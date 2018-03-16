@@ -111,7 +111,7 @@ Next, I modify the btnClick function in "MainActivity.java".
     }
 Finally, run this application and press the refresh button.
 This is a gif file of the application's work:
-![image]()
+![image](https://github.com/huixiaoyang/weather-application/blob/master/animated.gif)
 
 
 
