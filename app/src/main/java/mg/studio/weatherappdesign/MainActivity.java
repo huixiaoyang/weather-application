@@ -15,6 +15,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnClick(View view) {
         new DownloadUpdate().execute();
+
+        SimpleDateFormat formatter_date = new SimpleDateFormat("MM/dd/yyyy ");
+        Date curDate = new Date(System.currentTimeMillis());
+        String str= formatter_date.format(curDate);
+        ((TextView) findViewById(R.id.tv_date)).setText(str);
+
+        SimpleDateFormat formatter_week = new SimpleDateFormat("EEEE");
+        Date curWeek = new Date(System.currentTimeMillis());
+        String str2= formatter_week.format(curWeek);
+        ((TextView) findViewById(R.id.curweekday)).setText(str2);
     }
 
 
