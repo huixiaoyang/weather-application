@@ -67,7 +67,7 @@ Then I modify the TextView.
         android:textColor="#909090" />
         
 The result is the follow picture:
-![image]()
+![image](https://github.com/huixiaoyang/weather-application/blob/master/add_blue_bg.JPG)
 
 
 
