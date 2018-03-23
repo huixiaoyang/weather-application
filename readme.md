@@ -1,117 +1,100 @@
-##  md file about assigment 001 -Mobile application
-This is my md file about assigment 001. My student number is 20151633 and my name is 杨孝辉. Here I will show that I have completed:
-- adding the new icon to the application,
-- adding the blue background,
-- adding the refresh button,when the button is pressed,the temperature,the date and the day of the week are all updated.
-
-### adding the new icon to the app
-I put a picture named "icon.png" ![image](https://github.com/huixiaoyang/weather-application/blob/master/icon.png)that I search on the Internet into the drawable folder. Then I modify AndroidManifest.xml.
-
-    <?xml version="1.0" encoding="utf-8"?>
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-    
-    package="mg.studio.weatherappdesign">
-   
-    <uses-permission
-    
-    android:name="android.permission.INTERNET"/>
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/icon"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-    </manifest>
-
-In the follow picture, the bule icon of WeatherApplication is that I used.
-![image](https://github.com/huixiaoyang/weather-application/blob/master/myicon.JPG)
-
-### adding the blue backgroung
-I create a xml file named "textview_shape.xml".
-
-    <?xml version="1.0" encoding="utf-8"?>
-    <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval"
-    android:useLevel="false">
-    
-    <solid android:color="#31a7dc" />
-    <corners android:radius="360dp" />
-    <padding
-        android:bottom="1dp"
-        android:left="1dp"
-        android:right="1dp"
-        android:top="1dp" />
-    <size 
-        android:width="15dp"
-        android:height="15dp" />
-    </shape>
+##  md file about assigment 002 -Mobile application
+This is my md file about assigment 002. My student number is 20151633 and my name is 杨孝辉. Here I will show that I have completed:
+- Use the data from my chosen source to populate my version of the weather application and update the content  when the refresh button is pressed.
+- Handle the network connection in case of loss and make sure that the application does not crash.
 
 
-Then I modify the TextView.
+### Use the data from my chosen source to populate my version of the weather application and update the content  when the refresh button is pressed.
+I update some code including onReceive function and DownloadUpdate class:
 
-    <TextView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:text="mon"
-        android:background="@drawable/textview_shape"
-        android:textAllCaps="true"
-        android:textColor="#909090" />
-        
-The result is the follow picture:
-![image](https://github.com/huixiaoyang/weather-application/blob/master/add_blue_bg.JPG)
+    private class DownloadUpdate extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            //String stringUrl = "http://mpianatra.com/Courses/info.txt";
+            String stringUrl ="https://api.seniverse.com/v3/weather/now.json?key=snjr8qqdaam5soy1&location=chongqing&language=zh-Hans&unit=c";
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader;
 
+            try {
+                URL url = new URL(stringUrl);
 
+                // Create the request to get the information from the server, and open the connection
+                urlConnection = (HttpURLConnection) url.openConnection();
 
-### adding the refresh button,when the button is pressed,the temperature,the date and the day of the week are all updated.
-       
-First, I put a picture named "imagebtn_update.png" ![image](https://github.com/huixiaoyang/weather-application/blob/master/imagebtn_update.png)into drawable folder.Then, add code in suittable position in "activity_main.xml".
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
 
-    <LinearLayout
-        android:id="@+id/linearLayout_update"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/linearLayout"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+                // Read the input stream into a String
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+                if (inputStream == null) {
+                    // Nothing to do.
+                    return null;
+                }
+                reader = new BufferedReader(new InputStreamReader(inputStream));
 
-        <Button
-        android:id="@+id/button_update"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/imagebtn_update"
-        android:onClick="btnClick" />
-    </LinearLayout>
-Next,add android:id="@+id/curweekday" in the TextView which shows "SUNDAY".
-    
-Next, I modify the btnClick function in "MainActivity.java".
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    // Mainly needed for debugging
+                    buffer.append(line + "\n");
+                }
 
-    import java.text.SimpleDateFormat;
-    import java.util.Date;
-    public void btnClick(View view) {
-        new DownloadUpdate().execute();
-        
-        SimpleDateFormat formatter_date = new SimpleDateFormat("MM/dd/yyyy ");
-        Date curDate = new Date(System.currentTimeMillis());
-        String str= formatter_date.format(curDate);
-        ((TextView) findViewById(R.id.tv_date)).setText(str);
+                if (buffer.length() == 0) {
+                    // Stream was empty.  No point in parsing.
+                    return null;
+                }
+                String  strWeatherData=buffer.toString();
+                try {
+                    JSONObject jsonWeatherData = new JSONObject(strWeatherData);
+                    String Temperature=jsonWeatherData.getJSONArray("results").getJSONObject(0).getJSONObject("now").getString("temperature");
+                    //The temperature
+                    return Temperature;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                //return buffer.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
 
-        SimpleDateFormat formatter_week = new SimpleDateFormat("EEEE");
-        Date curWeek = new Date(System.currentTimeMillis());
-        String str2= formatter_week.format(curWeek);
-        ((TextView) findViewById(R.id.curweekday)).setText(str2);
+The result is this:
+![image](E://press_before.JPG)
+
+###  Handle the network connection in case of loss and make sure that the application does not crash.
+
+I update the onReceive function:
+
+       public  void onReceive(Context context) {
+        ConnectivityManager connectivityManager=(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo  mobNetInfo=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        NetworkInfo  wifiNetInfo=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
+            Toast.makeText(getApplicationContext(), "please check your Internet", Toast.LENGTH_LONG).show();
+        }else {
+            new DownloadUpdate().execute();
+
+            SimpleDateFormat formatter_date = new SimpleDateFormat("MM/dd/yyyy ");
+            Date curDate = new Date(System.currentTimeMillis());
+            String str= formatter_date.format(curDate);
+            ((TextView) findViewById(R.id.tv_date)).setText(str);
+
+            SimpleDateFormat formatter_week = new SimpleDateFormat("EEEE");
+            Date curWeek = new Date(System.currentTimeMillis());
+            String str2= formatter_week.format(curWeek);
+            ((TextView) findViewById(R.id.curweekday)).setText(str2);
+            ((TextView) findViewById(R.id.tv_location)).setText("chongqing");
+        }
     }
-Finally, run this application and press the refresh button.
-This is a gif file of the application's work:
-![image](https://github.com/huixiaoyang/weather-application/blob/master/animated.gif)
+
+When there is not Internet connection, the result is :
+![image](E://press_after.JPG)
 
 
 
