@@ -64,7 +64,7 @@ I update some code including onReceive function and DownloadUpdate class:
         }
 
 The result is this:
-![image](E://press_before.JPG)
+![image](https://github.com/huixiaoyang/weather-application/blob/master/demo_1.gif)
 
 ###  Handle the network connection in case of loss and make sure that the application does not crash.
 
@@ -94,7 +94,7 @@ I update the onReceive function:
     }
 
 When there is not Internet connection, the result is :
-![image](E://press_after.JPG)
+![image](https://github.com/huixiaoyang/weather-application/blob/master/demo_2.gif)
 
 
 
